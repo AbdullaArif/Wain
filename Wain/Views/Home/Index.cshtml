@@ -1,0 +1,148 @@
+﻿@model HomeVM
+@{
+    int c = 0;
+}<!-- Banner start -->
+<div class="banner" id="banner">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            @foreach (Slide slide in Model.Sliders)
+            {
+                <div class="carousel-item item-bg @((slide.Order == 1) ? "active" : "")">
+                    <img class="d-block w-100 h-100" src="~/assets/img/@slide.Image" alt="banner">
+                    <div class="carousel-caption banner-slider-inner d-flex h-100">
+                        <div class="carousel-content container">
+                            <div class="text-center">
+                                <h1 data-animation="animated fadeInDown delay-05s" class="text-uppercase">@slide.Title</h1>
+                                <p data-animation="animated fadeInUp delay-10s">
+                                    @slide.SubTitle
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="slider-mover-left" aria-hidden="true">
+                <i class="fa fa-angle-left"></i>
+            </span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="slider-mover-right" aria-hidden="true">
+                <i class="fa fa-angle-right"></i>
+            </span>
+        </a>
+    </div>
+  @*  <div class="container search-options-btn-area">
+        <a class="search-options-btn">
+            Search Options
+            <i class="fa fa-chevron-up animated fadeInUp"></i>
+        </a>
+    </div>*@
+</div>
+<!-- banner end -->
+<!-- Search area start -->
+
+<!-- Search area start -->
+<!-- Selcome section start -->
+<div class="welcome-section content-area-7">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-6 col-lg-5 col-md-12 align-self-center wow fadeInLeft delay-04s">
+                <div class="text">
+                    <h1><span>Welcome</span> to Car dealer</h1>
+                    <p>Welcome to our car dealer website, where you can find the perfect vehicle for your needs. We specialize in providing top-quality rental cars for your convenience. Whether you're planning a weekend getaway or a business trip, our wide range of vehicles offers comfort, reliability, and style. Explore our selection and experience the freedom of the road with our exceptional car rental service.</p>
+                    
+                    <ul class="hedins-mb-30">
+                        <li><i class="flaticon-people"></i>Free Support Anytime</li>
+                        <li><i class="flaticon-transport-3"></i>Oll Changes</li>
+                        <li><i class="flaticon-car-2"></i>Air Conditionninds</li>
+                    </ul>
+                    <a asp-controller="about" asp-action="index" class="btn btn-sm btn-border">Glance</a>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-12 col-pad wow fadeInRight delay-04s">
+                <div class="photo">
+                    <img width="400" height="300px" src="~/assets/img/BMWRetro.jpg" alt="welcome-7" class="img-fluid">
+                    <img width="400" height="400px" src="~/assets/img/BMWConsept.jpg" alt="welcome-7" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Selcome section end -->
+<!-- Featured car start -->
+<div class="featured-car content-area-2 clearfix bg-grea">
+    <div class="container">
+        <div class="main-title">
+            <h1><span>Featured</span> Vehicles</h1>
+            <p class="mb-20">Check out our featured vehicles</p>
+            <ul class="list-inline-listing filters filteriz-navigation">
+               @foreach (var item in Model.Cars)
+                {
+                    c++;
+                    <li  class="btn btn-inline filtr-button filtr"><a asp-controller="home" asp-action="index" asp-route-Brand="@item.Brand">@item.Brand</a></li>
+                }          
+            </ul>
+        </div>
+        <div class="row filter-portfolio">
+            <div class="">
+                @foreach (Car car in Model.Cars)
+                {
+                    <div class="col-lg-3 col-md-6 col-sm-6 filtr-item" data-category="3">
+                        <div class="card car-box-2">
+                            <!-- car img -->
+                            <div class="car-thumbnail">
+                                <a asp-controller="home" asp-action="details" asp-route-id="@car.Id" class="car-img">
+                               <img src="~/assets/img/@car.CarImages[0].Image" alt="car" class="img-fluid">
+                                    <div class="listing-time2">@((car.IsRent == true) ? "Rent" : "Not Available")</div>
+                                    <div class="price-ratings-box">
+                                       @car.Price
+                                    </div>
+                                </a>
+                                <div class="car-overlay">
+                                    <a asp-controller="home" asp-action="details" asp-route-id="@car.Id" class="overlay-link">
+                                        <i class="fa fa-link"></i>
+                                    </a>
+                                    <div class="car-magnify-gallery">
+                                        <a href="~/assets/img/@car.CarImages[0].Image" class="overlay-link">
+                                            <i class="fa fa-expand"></i>
+                                        </a>
+                                        <a href="~/assets/img/@car.CarImages.FirstOrDefault(ca=>ca.IsPrimary==false)?.Image" class="@car.Model Photo"></a>                                                                            
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- detail -->
+                            <div class="detail">
+                                <h5 class="title"><a asp-controller="home" asp-action="details" asp-route-id="@car.Id">@car.Brand/@car.Model</a></h5>
+                                <ul class="custom-list">
+                                    <li>
+                                        @car.GraduationYear
+                                    </li>
+                                </ul>
+                                <ul class="clearfix facilities-list">
+                                    <li>
+                                        <i class="flaticon-transport-4"></i>
+                                        @car.BodyStyle.Name
+                                    </li>
+                                    <li>
+                                        <i class="flaticon-road"></i>@car.March
+                                    </li>
+
+                                    <li>
+                                        <i class="flaticon-petrol"></i>
+                                        @car.FuelType.Name
+                                    </li>
+                                    <li>
+                                        <i class="flaticon-camera"></i>@car.Transmission
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+</div>

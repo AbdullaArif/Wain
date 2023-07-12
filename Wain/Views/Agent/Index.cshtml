@@ -1,0 +1,77 @@
+﻿@model AgentVM
+<!-- Sub banner start -->
+<div class="sub-banner overview-bgi">
+    <div class="container">
+        <div class="page-name">
+            <h1>Agent List</h1>
+        </div>
+    </div>
+    <div class="page-info">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="breadcrumb-area">
+                        <ul>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="contact-info">
+                        <ul>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Sub banner end -->
+<!-- Agent start -->
+<div class="agent content-area-2">
+    <div class="container">
+        <div class="main-title">
+            <h1><span>Agent</span> List</h1>
+            <p>Meet out small team that make those great products.</p>
+        </div>
+        <div class="row">
+            @foreach (Agent agent in Model.Agents)
+            {
+                <div class="col-lg-6 col-md-6  col-sm-6">
+                    <div class="row agent-4">
+                        <div class="col-xl-4 col-lg-5 col-md-12 col-pad">
+                            <div class="photo">
+                                <img src="~/assets/img/@agent.Image" alt="agent-list" class="img-fluid">
+                            </div>
+                        </div>
+                        <div class="col-xl-8 col-lg-7 col-md-12 col-pad align-self-center">
+                            <div class="details">
+                                <h6>Seller</h6>
+                                <h3><a asp-controller="agent" asp-action="details" asp-route-id="@agent.Id">@agent.Name @agent.Surname</a></h3>
+                                @if (agent != null && agent.Car != null)
+                                {
+                                    <p>@agent.Car.Count</p>
+                                }
+                                <h6>@agent.Address</h6>
+                                <h6>@agent.Mobile</h6>
+                                <h6>@agent.Email</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            @if (@Model.CurrentPage != 0)
+            {
+                <a class="btn btn-secondary mx-1" asp-action="index" asp-controller="agent" asp-route-page="@(Model.CurrentPage-1)">Previous</a>
+            }
+            @for (int i = 0; i < @Model.TotalPage; i++)
+            {
+                <a class="btn btn-secondary mx-1 @(i==Model.CurrentPage?"disabled":"")" asp-action="index" asp-controller="agent" asp-route-page="@i">@(i + 1)</a>
+            }
+            @if (@Model.CurrentPage + 1 < @Model.TotalPage)
+            {
+                <a class="btn btn-secondary mx-1" asp-action="index" asp-controller="agent" asp-route-page="@(Model.CurrentPage+1)">Next</a>
+            }
+        </div>
+    </div>
+</div>
+<!-- Agent end -->

@@ -1,0 +1,206 @@
+﻿@using Wain.ViewModels.MyProfile;
+@model CreateCarVM
+@{
+    Layout = null;
+}
+
+<!-- Contact 3 end -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Wain - Rent a Car</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="~/Formassets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="~/Formassets/vendors/base/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="~/Formassets/css/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="~/Formassets/images/favicon.png" />
+</head>
+
+<body>
+    <div class="container-scroller">
+        <!-- partial:../../partials/_navbar.html -->
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:../../partials/_sidebar.html -->
+            <!-- partial -->
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <div class="row">
+
+                        <div class="col-12 grid-margin stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Create a rental car</h4>
+                                    <p> Please make sure you did everything right when creating the Ad</p>
+                                    <br />
+                                    <form class="forms-sample" method="post" enctype="multipart/form-data">
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                                <label asp-for="Photo"> Main Photo </label>
+                                                <input asp-for="Photo" class="form-control" placeholder="Main Photo">
+                                                <span asp-validation-for="Photo" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                                <label asp-for="Photos">Photos </label>
+                                                <input asp-for="Photos" class="form-control" placeholder=" Photos ">
+                                                <span asp-validation-for="Photos" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                                <label asp-for="Brand"> Brand </label>
+                                                <input asp-for="Brand" class="form-control" placeholder="Brand">
+                                                <span asp-validation-for="Brand" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                                <label asp-for="Model"> Model </label>
+                                                <input asp-for="Model" class="form-control" placeholder="Model">
+                                                <span asp-validation-for="Model" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                                <label asp-for="March"> March </label>
+                                                <input asp-for="March" class="form-control" placeholder="March">
+                                                <span asp-validation-for="March" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                                <label asp-for="GraduationYear"> GraduationYear </label>
+                                                <input asp-for="GraduationYear" class="form-control" placeholder="GraduationYear">
+                                                <span asp-validation-for="GraduationYear" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                                <label asp-for="Engine"> Engine </label>
+                                                <input asp-for="Engine" class="form-control" placeholder="Engine">
+                                                <span asp-validation-for="Engine" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                                <label asp-for="Price"> Price </label>
+                                                <input asp-for="Price" class="form-control" placeholder="Price">
+                                                <span asp-validation-for="Price" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                                <label asp-for="Transmission"> Transmission </label>
+                                                <input asp-for="Transmission" class="form-control" placeholder="Transmission">
+                                                <span asp-validation-for="Transmission" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                                <label asp-for="Location"> Location </label>
+                                                <input asp-for="Location" class="form-control" placeholder="Location">
+                                                <span asp-validation-for="Location" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                <div class="form-group">
+                                                    <label asp-for="HorsePower"> HorsePower </label>
+                                                    <input asp-for="HorsePower" class="form-control" placeholder="HorsePower">
+                                                    <span asp-validation-for="HorsePower" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                <div class="form-group">
+                                                    <label asp-for="Description">Description </label>
+                                                    <input asp-for="Description" class="form-control" placeholder="Description">
+                                                    <span asp-validation-for="Description" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="form-group">
+
+                                                    <select class="form-control" asp-for="BodyStyleId" asp-items="new SelectList(ViewBag.BodyStyles,nameof(BodyStyle.Id),nameof(BodyStyle.Name))">
+                                                        <option selected disabled class="text-danger">Select Body Style</option>
+                                                    </select>
+                                                    <span asp-validation-for="BodyStyleId" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="form-group">
+                                                    <select class="form-control" asp-for="FuelTypeId" asp-items="new SelectList(ViewBag.FuelTypes,nameof(FuelType.Id),nameof(FuelType.Name))">
+                                                        <option selected disabled class="text-danger">Select Fuel Type</option>
+                                                    </select>
+                                                    <span asp-validation-for="FuelTypeId" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="form-group">
+                                                        <select class="form-control" asp-for="ColorId" asp-items="new SelectList(ViewBag.Colors,nameof(Color.Id),nameof(Color.Name))">
+                                                            <option selected disabled class="text-danger">Select Color</option>
+                                                        </select>
+                                                        <span asp-validation-for="ColorId" class="text-danger"></span>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label asp-for="IsRent">Is Rent? </label>
+                                                        <input asp-for="IsRent" class="form-control" placeholder="Is Rent?">
+                                                        <span asp-validation-for="IsRent" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                        <button type="submit" class="btn btn-primary me-2">Create</button>
+                                         <a  asp-controller="myprofile" asp-action="seller" class="btn btn-light">Cancel</a>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- content-wrapper ends -->
+                <!-- partial:../../partials/_footer.html -->
+                <footer class="footer">
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                    </div>
+                </footer>
+                <!-- partial -->
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="~/Formassets/vendors/base/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- inject:js -->
+    <script src="~/Formassets/js/off-canvas.js"></script>
+    <script src="~/Formassets/js/hoverable-collapse.js"></script>
+    <script src="~/Formassets/js/template.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="~/Formassets/js/file-upload.js"></script>
+    <!-- End custom js for this page-->
+</body>
+
+</html>
+
+<!-- Google map start -->
+<div class="section">
+    <div class="map">
+        <div id="contactMap" class="contact-map"></div>
+    </div>
+</div>
+<!-- Google map end -->

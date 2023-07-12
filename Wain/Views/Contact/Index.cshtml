@@ -1,0 +1,276 @@
+﻿@model ContactVM
+@using Wain.Service;
+@inject LayoutService service;
+@{
+    Layout = null;
+    Dictionary<string, string> settings = await service.SettingsAsync();
+}
+<!-- Sub banner start -->
+@*<div class="sub-banner overview-bgi">
+    <div class="container">
+        <div class="page-name">
+            <h1><span>Contact</span> Us</h1>
+        </div>
+    </div>
+    <div class="page-info">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="breadcrumb-area">
+                        <ul>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="contact-info">
+                        <ul>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Sub banner end -->
+<!-- Contact 3 start -->
+<div class="contact-3 content-area-7">
+    <div class="container">
+        <div class="main-title">
+            <h1><span>Contact</span> Us</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 col-md-5">
+                <div class="contact-info">
+                    <h3>Contact Info</h3>
+                    <ul class="contact-list">
+                        <li><i class="fa fa-map-marker"></i> @settings["Address"]</li>
+                        <li><i class="fa fa-phone"></i> @settings["PhoneNum"]</li>
+                        <li><i class="mr-3 fa fa-envelope"></i> @settings["Email"]</li>
+                    </ul>
+                    <h3>Follow Us</h3>
+                    <ul class="social-list clearfix">
+                        <li><a href="@settings["Facebook"]" class="facebook"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="@settings["Twitter"]" class="twitter"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="@settings["Google+"]" class="google"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="@settings["Instagram"]" class="rss"><i class="fa fa-rss"></i></a></li>
+                        <li><a href="@settings["Linkedin"]" class="linkedin"><i class="fa fa-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-7">
+                <form  method="post" >
+                    <div class="row">
+                        <div class="contact-info">
+                            <h3>Contact Info</h3>
+                            <ul class="contact-list">
+                                <li><i class="fa fa-map-marker"></i> @settings["Address"]</li>
+                                <li><i class="fa fa-phone"></i> @settings["PhoneNum"]</li>
+                                <li><i class="mr-3 fa fa-envelope"></i> @settings["Email"]</li>
+                            </ul>
+                            <h3>Follow Us</h3>
+                            <ul class="social-list clearfix">
+                                <li><a href="@settings["Facebook"]" class="facebook"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="@settings["Twitter"]" class="twitter"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="@settings["Google+"]" class="google"><i class="fa fa-google-plus"></i></a></li>
+                                <li><a href="@settings["Instagram"]" class="rss"><i class="fa fa-rss"></i></a></li>
+                                <li><a href="@settings["Linkedin"]" class="linkedin"><i class="fa fa-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group name">
+                                <input asp-for="Name"  class="form-control" placeholder="Name">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group email">
+                                <input asp-for="Email" class="form-control" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group subject">
+                                <input asp-for="Subject" class="form-control" placeholder="Subject">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group number">
+                                <input asp-for="Number" class="form-control" placeholder="Number">
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group message">
+                                <textarea class="form-control" name="message" asp-for="Message" placeholder="Write message"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="send-btn text-center">
+                                <br>
+                                <button type="submit" class="btn btn-border btn-md">Send Message</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>*@
+<!-- Contact 3 end -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Wain - Rent a Car</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="~/Formassets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="~/Formassets/vendors/base/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="~/Formassets/css/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="~/Formassets/images/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <!-- External CSS libraries -->
+    <link type="text/css" rel="stylesheet" href="~/assets/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="~/assets/css/magnific-popup.css">
+    <link type="text/css" rel="stylesheet" href="~/assets/css/jquery.selectBox.css">
+    <link type="text/css" rel="stylesheet" href="~/assets/css/dropzone.css">
+    <link type="text/css" rel="stylesheet" href="~/assets/css/rangeslider.css">
+    <link type="text/css" rel="stylesheet" href="~/assets/css/animate.min.css">
+    <link type="text/css" rel="stylesheet" href="~/assets/css/slick.css">
+    <link type="text/css" rel="stylesheet" href="~/assets/css/jquery.mCustomScrollbar.css">
+    <link type="text/css" rel="stylesheet" href="~/assets/fonts/font-awesome/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="~/assets/fonts/flaticon/font/flaticon.css">
+
+    <!-- Favicon icon -->
+    <link rel="shortcut icon" href="~/assets/img/favicon.ico" type="image/x-icon">
+
+    <!-- Google fonts -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800%7CPlayfair+Display:400,700%7CRoboto:100,300,400,400i,500,700">
+
+    <!-- Custom Stylesheet -->
+    <link type="text/css" rel="stylesheet" href="~/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" id="style_sheet" href="~/assets/css/skins/default.css">
+</head>
+
+<body>
+    <div class="container-scroller">
+        <!-- partial:../../partials/_navbar.html -->
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:../../partials/_sidebar.html -->
+            <!-- partial -->
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <div class="contact-info">
+                                <h3>Contact Info</h3>
+                                <ul class="contact-list">
+                                    <li><i class="fa fa-map-marker"></i> @settings["Address"]</li>
+                                    <li><i class="fa fa-phone"></i> @settings["PhoneNum"]</li>
+                                    <li><i class="mr-3 fa fa-envelope"></i> @settings["Email"]</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="contact-info">
+                                <h3>Follow Us</h3>
+                                <div class="social-icons">
+                                    <a href="@settings["Facebook"]" class="facebook"><i class="fa fa-facebook"></i></a>
+                                    <a href="@settings["Twitter"]" class="twitter"><i class="fa fa-twitter"></i></a>
+                                    <a href="@settings["Google+"]" class="google"><i class="fa fa-google-plus"></i></a>
+                                    <a href="@settings["Instagram"]" class="rss"><i class="fa fa-rss"></i></a>
+                                    <a href="@settings["Linkedin"]" class="linkedin"><i class="fa fa-linkedin"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 grid-margin stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Add Message</h4>
+
+                                    <form class="forms-sample" method="post">
+                                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-group name">
+                                                <label asp-for="Name"> Name </label>
+                                                <input asp-for="Name" class="form-control" placeholder="Name">
+                                                <span asp-validation-for="Name" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-group email">
+                                                <label asp-for="Email"> Email </label>
+                                                <input asp-for="Email" class="form-control" placeholder="Email">
+                                                <span asp-validation-for="Email" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-group subject">
+                                                <label asp-for="Subject"> Subject </label>
+                                                <input asp-for="Subject" class="form-control" placeholder="Subject">
+                                                <span asp-validation-for="Subject" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-group number">
+                                                <label asp-for="Number"> Number </label>
+                                                <input asp-for="Number" class="form-control" placeholder="Number">
+                                                <span asp-validation-for="Number" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group message">
+                                                <label asp-for="Message"> Message </label>
+                                                <textarea class="form-control" name="Message" asp-for="Message" placeholder="Write message"></textarea>
+                                                <span asp-validation-for="Message" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="text-danger" asp-validation-summary="ModelOnly">
+                                        </div> <br />
+                                        <div class="col-12">
+                                            <button type="submit" class="btn btn-primary me-2">Send</button>
+                                            <a asp-controller="home" asp-action="index" class="btn btn-primary me-2">Cencel</a>
+
+                                        </div><br />
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- content-wrapper ends -->
+                <!-- partial:../../partials/_footer.html -->
+                <footer class="footer">
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                    </div>
+                </footer>
+                <!-- partial -->
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="~/Formassets/vendors/base/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- inject:js -->
+    <script src="~/Formassets/js/off-canvas.js"></script>
+    <script src="~/Formassets/js/hoverable-collapse.js"></script>
+    <script src="~/Formassets/js/template.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="~/Formassets/js/file-upload.js"></script>
+    <!-- End custom js for this page-->
+</body>
+
+</html>

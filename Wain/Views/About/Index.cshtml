@@ -1,0 +1,186 @@
+﻿@model AboutVM
+<!-- Sub banner start -->
+<div class="sub-banner overview-bgi">
+    <div class="container">
+        <div class="page-name">
+            <h1>About Us</h1>
+        </div>
+    </div>
+    <div class="page-info">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="breadcrumb-area">
+                        <ul>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="contact-info">
+                        <ul>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Sub banner end -->
+<!-- About us start -->
+<div class="about-us content-area-7">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="car-service-v">
+                    <iframe src="https://www.youtube.com/embed/m5_AKjDdqaU"></iframe>
+                </div>
+            </div>
+            <div class="col-lg-6 align-self-center">
+                <div class="about-text">
+                    <h3>Welcome to Car dealer</h3>
+                    <p>
+                        Welcome to our car dealer website, where you can find the perfect vehicle for your needs. We specialize in providing top-quality rental cars for your convenience. Whether you're planning a weekend getaway or a business trip, our wide range of vehicles offers comfort, reliability, and style. Explore our selection and experience the freedom of the road with our exceptional car rental service.
+                    </p>
+                    <a asp-controller="car" asp-action="index" class="btn btn-sm btn-border">Glance</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- About us end -->
+<!-- services 3 start -->
+<div class="services-3 bg-light">
+    <div class="container">
+        <div class="main-title">
+            <h1><span>Our</span> Services</h1>
+            <p>Check out our featured vehicles</p>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    @foreach (var item in Model.ServiceCustoms)
+                    {
+                         <div class="col-md-4 col-sm-6">
+                        <div class="services-info-3">
+                          @Html.Raw(@item.Value)  
+                            <h5>@item.Key</h5>
+                            <p>@item.Description</p>
+                        </div>
+                    </div>
+                    }
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- services end -->
+<!-- agent start -->
+<div class="agent content-area-2">
+    <div class="container">
+        <div class="main-title">
+            <h1><span>Our</span> Agent</h1>
+            <p>Do you want to be a seller? Then <a asp-controller="account" asp-action="register" asp-area="admin">join</a> us</p>
+        </div>
+     
+        <div class="slick-slider-area">
+            <div class="row slick-carousel" data-slick='{"slidesToShow": 3, "responsive":[{"breakpoint": 1024,"settings":{"slidesToShow": 2}}, {"breakpoint": 768,"settings":{"slidesToShow": 1}}]}'>
+                @foreach (var item in Model.Agents)
+                {
+            <div class="slick-slide-item">
+                    <div class="agent-1">
+                        <div class="agent-photo">
+                            <a asp-controller="agent" asp-action="details" asp-route-id="@item.Id">
+                                <img src="assets/img/@item.Image" alt="@item.Name img" class="img-fluid">
+                            </a>
+                        </div>
+                        <div class="details">
+                            <h6>Seller</h6>
+                            <h5><a href="agent-detail.html">@item.Name @item.Surname</a></h5>
+                                @if (Model.Cars != null)
+                                {
+                                    <p>@Model.Cars.Count Car</p>
+                                }
+                            <ul class="social-list clearfix">
+                                    <h6>Address: @item.Address</h6>
+                                    <h6>Phone: @item.Mobile</h6>
+                                    <h6>Mail: @item.Email</h6>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                }
+    
+
+            </div>
+
+            <div class="slick-prev slick-arrow-buton">
+                <i class="fa fa-angle-left"></i>
+            </div>
+            <div class="slick-next slick-arrow-buton">
+                <i class="fa fa-angle-right"></i>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- agent end -->
+<!-- Counters start -->
+<div class="counters overview-bgi">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <div class="media counter-box">
+                    <div class="media-left">
+                        <i class="flaticon-transport-5"></i>
+                    </div>
+                    <div class="media-body">
+                        <h1 class="counter">
+                            @Model.Cars.Count()
+                        </h1> 
+                        <p>All Cars</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <div class="media counter-box">
+                    <div class="media-left">
+                        <i class="flaticon-cup"></i>
+                    </div>
+                    <div class="media-body">
+                        <h1 class="counter">103</h1>
+                        <p>Winning Awards</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <div class="media counter-box">
+                    <div class="media-left">
+                        <i class="flaticon-transport-5"></i>
+                    </div>
+                    <div class="media-body">
+                        @if (Model.Cars != null)
+                        {
+                            <h1 class="counter">@Model.Cars.Where(c=>c.IsRent==false).Count()</h1>
+                        }
+                        <p>Ready to use</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <div class="media counter-box">
+                    <div class="media-left">
+                        <i class="flaticon-profile"></i>
+                    </div>
+                    <div class="media-body">
+                        <h1 class="counter">@Model.Agents.Count</h1>
+                        <p>Sellers</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Counters end -->
+<!-- Testimonial 3 start -->
+
+<!-- Testimonial 3 end -->

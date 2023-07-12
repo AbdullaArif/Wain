@@ -1,0 +1,397 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using Wain.DAL;
+@using Wain.Models;
+@using Wain.Service;
+@inject LayoutService service;
+@inject UserManager<AppUser> UserManager
+@{ 
+    Dictionary<string, string> settings = await service.SettingsAsync();
+}
+<!DOCTYPE html>
+<html lang="zxx">
+
+<!-- Mirrored from storage.googleapis.com/theme-vessel-items/checking-sites-2/wain-html/HTML/main/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 08 Jun 2023 20:33:44 GMT -->
+<head>
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    '../../../../../../www.googletagmanager.com/gtm5445.html?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-TAGID');</script>
+    <!-- End Google Tag Manager -->
+    <title>WAIN - Rent a Car</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <!-- External CSS libraries -->
+    <link type="text/css" rel="stylesheet" href="~/assets/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="~/assets/css/magnific-popup.css">
+    <link type="text/css" rel="stylesheet" href="~/assets/css/jquery.selectBox.css">
+    <link type="text/css" rel="stylesheet" href="~/assets/css/dropzone.css">
+    <link type="text/css" rel="stylesheet" href="~/assets/css/rangeslider.css">
+    <link type="text/css" rel="stylesheet" href="~/assets/css/animate.min.css">
+    <link type="text/css" rel="stylesheet" href="~/assets/css/slick.css">
+    <link type="text/css" rel="stylesheet" href="~/assets/css/jquery.mCustomScrollbar.css">
+    <link type="text/css" rel="stylesheet" href="~/assets/fonts/font-awesome/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="~/assets/fonts/flaticon/font/flaticon.css">
+
+    <!-- Favicon icon -->
+    <link rel="shortcut icon" href="~/assets/img/favicon.ico" type="image/x-icon">
+
+    <!-- Google fonts -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800%7CPlayfair+Display:400,700%7CRoboto:100,300,400,400i,500,700">
+
+    <!-- Custom Stylesheet -->
+    <link type="text/css" rel="stylesheet" href="~/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" id="style_sheet" href="~/assets/css/skins/default.css">
+
+</head>
+<body id="top">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TAGID"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div class="page_loader"></div>
+
+    <!-- main header start -->
+    <header class="main-header sticky-header header-with-top" id="main-header-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="navbar navbar-expand-lg navbar-light rounded">
+                        <a class="navbar-brand logo navbar-brand d-flex w-50 mr-auto" asp-controller="home" asp-action="index">
+                            <img src="~/assets/img/logos/@settings["LogoBlackWain"]" alt="logo">
+                        </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="fa fa-bars"></span>
+                        </button>
+                        <div class="navbar-collapse collapse w-100" id="navbar">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item dropdown active">
+                                    <a class="nav-link dropdown-toggle" asp-controller="home" asp-action="index">
+                                        Home
+                                    </a>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" asp-controller="car" asp-action="index">
+                                        Cars
+                                    </a>
+                                </li>
+                                <li class="nav-item dropdown megamenu-li">
+                                    <a class="nav-link dropdown-toggle" asp-controller="about" asp-action="index">About</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" asp-controller="agent" asp-action="index">
+                                        Agent
+                                    </a>
+
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" asp-controller="contact" asp-action="index">
+                                        Contact
+                                    </a>
+                                </li>
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        var user = await UserManager.GetUserAsync(User);
+                                        var roles = await UserManager.GetRolesAsync(user);
+                                        if (roles.Contains("Admin"))
+                                        {
+                                        <li class="nav-item dropdown">
+
+                                            <a class="nav-link dropdown-toggle" asp-area="admin" asp-controller="home" asp-action="index">@User.Identity.Name</a>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" asp-area="admin" asp-action="LogOut" asp-controller="account">Log Out</a>
+                                        </li>
+                                        }
+                                        else if (roles.Contains("Seller"))
+                                        {
+                                        <li class="nav-item dropdown">
+
+                                            <a class="nav-link dropdown-toggle" asp-controller="myprofile" asp-action="seller">@User.Identity.Name</a>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" asp-area="admin" asp-action="LogOut" asp-controller="account">Log Out</a>
+                                        </li>
+                                        }
+                                        else if (roles.Contains("Member"))
+                                        {
+                                        <li class="nav-item dropdown">
+
+                                            <a class="nav-link dropdown-toggle" asp-controller="myprofile" asp-action="member">@User.Identity.Name</a>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" asp-area="admin" asp-action="LogOut" asp-controller="account">Log Out</a>
+                                        </li>
+                                        }
+                                    }
+                                    else
+                                    {
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" asp-area="admin" asp-controller="account" asp-action="Login" asp-route-ReturnUrl="@Context.Request.Path.Value">
+                                            Login
+                                        </a>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" asp-area="admin" asp-controller="account" asp-action="register">
+                                            Register
+                                        </a>
+                                    </li>
+                                    }
+                              
+                               
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- main header end -->
+    @RenderBody()
+    <!-- Footer start -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer-item">
+                        <h4>Contact Us</h4>
+                        <div class="f-border"></div>
+                        <ul class="contact-info">
+                            <li>
+                                Address: @settings["Address"]
+                            </li>
+                            <li>
+                                Email: <a href="@settings["Email"]">@settings["Email"]</a>
+                            </li>
+                            <li>
+                                Phone: <a href="tel:@settings["PhoneNum"]">@settings["PhoneNum"]</a>
+                            </li>
+                            <li>
+                                Fax: @settings["PhoneNum"]
+                            </li>
+                        </ul>
+
+                        <ul class="social-list clearfix">
+                            <li><a href="@settings["Facebook"]" class="facebook-bgh"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="@settings["Twitter"]" class="twitter-bgh"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="@settings["Google+"]" class="google-bgh"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="@settings["Instagram"]" class="rss-bgh"><i class="fa fa-rss"></i></a></li>
+                            <li><a href="@settings["Linkedin"]" class="linkedin-bgh"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-lg-2 col-md-6 col-sm-6">
+                    <div class="footer-item">
+                        <h4>
+                            Useful Links
+                        </h4>
+                        <div class="f-border"></div>
+                        <ul class="links">
+                            <li>
+                                <a asp-controller="home" asp-action="index">Home</a>
+                            </li>
+                            <li>
+                                <a asp-controller="about" asp-action="index">About</a>
+                            </li>
+                            <li>
+                                <a asp-controller="car" asp-action="index">Car Listing</a>
+                            </li>
+                            <li>
+                                <a asp-controller="contact" asp-action="index">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+               
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer-item clearfix">
+                        <h4>Subscribe</h4>
+                        <div class="f-border"></div>
+                        <div class="Subscribe-box">
+                            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit.</p>
+                            <form action="#" method="GET">
+                                <p>
+                                    <input type="text" class="form-contact" name="email" placeholder="Enter Address">
+                                </p>
+                                <p>
+                                    <button type="submit" name="submitNewsletter" class="btn btn-block btn-color">
+                                        Subscribe
+                                    </button>
+                                </p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xl-12">
+                    <p class="copy">&copy;  2022 <a href="http://themevessel.com/" target="_blank">Theme Vessel</a>. Trademarks and brands are the car of their respective owners.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer end -->
+    <!-- Full Page Search -->
+    <div id="full-page-search">
+        <button type="button" class="close">×</button>
+        <form action="#">
+            <input type="search" value="" placeholder="type keyword(s) here" />
+            <button type="button" class="btn btn-sm btn-color">Search</button>
+        </form>
+    </div>
+
+    <!-- Car Video Modal -->
+    <div class="modal car-modal fade" id="carModal" tabindex="-1" role="dialog" aria-labelledby="carModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-6 modal-left">
+                            <div class="modal-left-content">
+                                <div id="modalCarousel" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner" role="listbox">
+                                        <div class="carousel-item active">
+                                            <iframe class="modalIframe" src="https://www.youtube.com/embed/5e0LxrLSzok" allowfullscreen></iframe>
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img src="~/assets/img/car-1.jpg" alt="Test ALT">
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img src="~/assets/img/car-1.jpg" alt="Test ALT">
+                                        </div>
+                                    </div>
+                                    <a class="control control-prev" href="#modalCarousel" role="button" data-slide="prev">
+                                        <i class="fa fa-angle-left"></i>
+                                    </a>
+                                    <a class="control control-next" href="#modalCarousel" role="button" data-slide="next">
+                                        <i class="fa fa-angle-right"></i>
+                                    </a>
+                                </div>
+                                <div class="description">
+                                    <h3>Description</h3>
+                                    <p>
+                                        Curabitur odio nibh, luctus non pulvinar a, ultricies ac diam. Donec neque
+                                        massa, viverra interdum eros ut, imperdiet pellentesque mauris. Proin sit amet
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 modal-right">
+                            <div class="modal-right-content bg-white">
+                                <strong class="price">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-half-o"></i>
+                                </strong>
+                                <section>
+                                    <h3>Audi A5</h3>
+                                    <ul class="bullets">
+                                        <li><i class="fa fa-arrow-right"></i> Audio Interface</li>
+                                        <li><i class="fa fa-arrow-right"></i> CDR Audio</li>
+                                        <li><i class="fa fa-arrow-right"></i> Seat Heating</li>
+                                        <li><i class="fa fa-arrow-right"></i> ParkAssist</li>
+                                        <li><i class="fa fa-arrow-right"></i> Cruise Control</li>
+                                        <li><i class="fa fa-arrow-right"></i> Airbags</li>
+                                        <li><i class="fa fa-arrow-right"></i> Air Conditioning</li>
+                                        <li><i class="fa fa-arrow-right"></i> Alarm System</li>
+                                    </ul>
+                                </section>
+                                <section>
+                                    <h3>Overview</h3>
+                                    <dl>
+                                        <dt>Model</dt>
+                                        <dd>BMW</dd>
+                                        <dt>Condition</dt>
+                                        <dd>Brand New</dd>
+                                        <dt>Year</dt>
+                                        <dd>2018</dd>
+                                        <dt>Mileage</dt>
+                                        <dd>37,000 mi</dd>
+                                        <dt>Price</dt>
+                                        <dd>$178,000</dd>
+                                    </dl>
+                                </section>
+                                <a href="car-details.html" class="btn btn-theme">Show Detail</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Off-canvas sidebar -->
+    <div class="off-canvas-sidebar">
+        <div class="off-canvas-sidebar-wrapper">
+            <div class="off-canvas-header">
+                <a class="close-offcanvas" href="#"><span class="fa fa-times"></span></a>
+            </div>
+            <div class="off-canvas-content">
+                <aside class="canvas-widget">
+                    <div class="logo text-center">
+                        <img src="~/assets/img/logos/@settings["LogoWain"]" alt="logo" >
+                    </div>
+                </aside>
+                <aside class="canvas-widget">
+                    <ul class="menu">
+                        <li class="menu-item menu-item-has-children"><a href="index.html">Home</a></li>
+                        <li class="menu-item"><a href="car-grid-leftside.html">Car List</a></li>
+                        <li class="menu-item"><a href="car-details.html">Car Detail</a></li>
+                        <li class="menu-item"><a href="blog-single-sidebar-right.html">Blog</a></li>
+                        <li class="menu-item"><a href="about-1.html">About  US</a></li>
+                        <li class="menu-item"><a href="contact-1.html">Contact US</a></li>
+                    </ul>
+                </aside>
+                <aside class="canvas-widget">
+                    <ul class="social-icons">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="#"><i class="fa fa-vk"></i></a></li>
+                    </ul>
+                </aside>
+            </div>
+        </div>
+    </div>
+
+    <!-- External JS libraries -->
+    <script src="~/assets/js/jquery-2.2.0.min.js"></script>
+    <script src="~/assets/js/popper.min.js"></script>
+    <script src="~/assets/js/bootstrap.min.js"></script>
+    <script src="~/assets/js/jquery.selectBox.js"></script>
+    <script src="~/assets/js/rangeslider.js"></script>
+    <script src="~/assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/assets/js/jquery.filterizr.js"></script>
+    <script src="~/assets/js/wow.min.js"></script>
+    <script src="~/assets/js/backstretch.js"></script>
+    <script src="~/assets/js/jquery.countdown.js"></script>
+    <script src="~/assets/js/jquery.scrollUp.js"></script>
+    <script src="~/assets/js/particles.min.js"></script>
+    <script src="~/assets/js/typed.min.js"></script>
+    <script src="~/assets/js/dropzone.js"></script>
+    <script src="~/assets/js/jquery.mb.YTPlayer.js"></script>
+    <script src="~/assets/js/slick.min.js"></script>
+    <script src="~/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0N5pbJN10Y1oYFRd0MJ_v2g8W2QT74JE"></script>
+    <script src="~/assets/js/ie-emulation-modes-warning.js"></script>
+    <!-- Custom JS Script -->
+    <script src="~/assets/js/app.js"></script>
+</body>
+
+<!-- Mirrored from storage.googleapis.com/theme-vessel-items/checking-sites-2/wain-html/HTML/main/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 08 Jun 2023 20:33:50 GMT -->
+</html>

@@ -1,0 +1,595 @@
+﻿@model DetailsVM
+<!-- Sub banner start -->
+<div class="sub-banner overview-bgi">
+    <div class="container">
+        <div class="page-name">
+            <h1>Car Detail</h1>
+        </div>
+    </div>
+    <div class="page-info">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="breadcrumb-area">
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="contact-info">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Sub banner end -->
+<!-- Car details page start -->
+<div class="car-details-page content-area-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12 col-xs-12 slider">
+                <div id="carDetailsSlider" class="carousel car-details-sliders slide mb-60">
+                    <!-- main slider carousel items -->
+                    <div class="carousel-inner">
+                        <div class="active item carousel-item" data-slide-number="0">
+                            <img src="~/assets/img/@Model.Car.CarImages.FirstOrDefault(ca=>ca.IsPrimary==true)?.Image" class="img-fluid" alt="car-Slider">
+                        </div>
+                    </div>
+                    <!-- main slider carousel nav controls -->
+                    <ul class="carousel-indicators smail-car list-inline nav nav-justified">
+
+                        @foreach (var item in Model.Car.CarImages.Where(ci => ci.IsPrimary == false))
+                        {
+                            <li class="list-inline-item">
+                                <a id="carousel-selector-1" data-slide-to="1" data-target="#carDetailsSlider">
+                                    <img src="~/assets/img/@item.Image" class="img-fluid" alt="sub-car">
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                    <div class="heading-car">
+                        <div class="row">
+                           
+                                <div class="col-md-12">
+                                    <div class="pull-left">
+                                    <h3>@Model.Car.Brand / @Model.Car.Model / @Model.Car.March</h3>
+                                    <p><i class="fa fa-map-marker"></i> @Model.Car.Location</p>
+                                    </div>
+                                    <div class="pull-right">
+                                    <h3><span class="text-right">$@Model.Car.Price</span></h3>
+                                        <h5>@((@Model.Car.IsRent == true) ? "Rent" : "Not Available")</h5>
+                                    </div>
+                                </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <!-- Car meta start -->
+                <div class="car-meta mb-60">
+                    <ul>
+                        <li>
+                            <i class="flaticon-road"></i>
+                            <p>@Model.Car.March</p>
+                        </li>
+                        <li>
+                            <i class="flaticon-transport-4"></i>
+                            <p>
+                                @Model.Car.BodyStyle.Name
+                            </p>
+                        </li>
+                        <li>
+                            <i class="flaticon-petrol"></i>
+                            <p>
+                                @Model.Car.FuelType.Name
+                            </p>
+                        </li>
+                        <li>
+                            <i class="flaticon-camera"></i>
+                            <p>@Model.Car.Transmission</p>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Specifications start -->
+                <div class="specifications widget-2 d-lg-none d-xl-none mb-60">
+                    <h5 class="sidebar-title">Specifications</h5>
+                    <ul>
+                        <ul>
+                            <li>
+                                <span>Make</span>@Model.Car.Brand
+                            </li>
+                            <li>
+                                <span>Model</span>@Model.Car.Model
+                            </li>
+                            <li>
+                                <span>Body Style</span>
+                                @Model.Car
+                            </li>
+                            <li>
+                                <span>Year</span>@Model.Car.GraduationYear
+                            </li>
+                            <li>
+                                <span>Mileage</span>@Model.Car.March
+                            </li>
+                            <li>
+                                <span>Transmission</span>@Model.Car.Transmission
+                            </li>
+                            <li>
+                                <span> Color</span>  @Model.Car.Color.Name
+                            </li>
+                            <li>
+                                <span>Engine</span>@Model.Car.Engine
+                            </li>
+                            <li>
+                                <span>Fuel Type</span>@Model.Car.FuelType.Name
+                                Fuel
+                            </li>
+                            <li>
+                                <span>Location</span>@Model.Car.Location
+                            </li>
+                        </ul>
+                </div>
+                <!-- Tabbing box start -->
+                <div class="tabbing tabbing-box mb-60">
+                    <ul class="nav nav-tabs" id="carTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" id="one-tab" data-toggle="tab" href="#one" role="tab" aria-controls="one" aria-selected="false">Vehicle Overview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="two-tab" data-toggle="tab" href="#two" role="tab" aria-controls="two" aria-selected="false">Features & Options</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="4-tab" data-toggle="tab" href="#4" role="tab" aria-controls="4" aria-selected="true">Location</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="carTabContent">
+                        <div class="tab-pane fade active show" id="one" role="tabpanel" aria-labelledby="one-tab">
+                            <h3 class="heading">Car Description</h3>
+                            <p>
+                                @Model.Car.Description
+                            </p>
+                        </div>
+                        <div class="tab-pane fade" id="two" role="tabpanel" aria-labelledby="two-tab">
+                            <div class="features-opions features-opions-2 mb-60">
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-6">
+                                        <ul>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                Adaptive Cruise Control
+                                            </li>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                Airbags
+                                            </li>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                Air Conditioning
+                                            </li>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                Alarm System
+                                            </li>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                Anti-theft Protection
+                                            </li>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                Audio Interface
+                                            </li>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                Automatic Climate Control
+                                            </li>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                Automatic Headlights
+                                            </li>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                Auto Start/Stop
+                                            </li>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                Bi-Xenon Headlights
+                                            </li>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                Audio Interface
+                                            </li>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                Bluetooth Handset
+                                            </li>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                BOSE Surround Sound
+                                            </li>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                Burmester Surround Sound
+                                            </li>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                CD/DVD Autochanger
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6">
+                                        <ul>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                CDR Audio
+                                            </li>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                Cruise Control
+                                            </li>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                Direct Fuel Injection
+                                            </li>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                Electric Parking Brake
+                                            </li>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                Floor Mats
+                                            </li>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                Garage Door Opener
+                                            </li>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                Leather Package
+                                            </li>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                Locking Rear Differential
+                                            </li>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                Luggage Compartments
+                                            </li>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                Manual Transmission
+                                            </li>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                Navigation Module
+                                            </li>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                Online Services
+                                            </li>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                ParkAssist
+                                            </li>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                Porsche Communication
+                                            </li>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                CD/DVD Autochanger
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-4 col-sm-6">
+                                        <ul>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                Power Steering
+                                            </li>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                Reversing Camera
+                                            </li>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                Roll-over Protection
+                                            </li>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                Seat Heating
+                                            </li>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                Seat Ventilation
+                                            </li>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                Sound Package Plus
+                                            </li>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                Sport Chrono Package
+                                            </li>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                Steering Wheel Heating
+                                            </li>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                Tire Pressure Monitoring
+                                            </li>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                Universal Audio Interface
+                                            </li>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                Voice Control System
+                                            </li>
+                                            <li>
+                                                <i class="flaticon-check"></i>
+                                                Wind Deflector
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade " id="three" role="tabpanel" aria-labelledby="three-tab">
+                            <div class="car-video">
+                                <h3 class="heading">Car Video</h3>
+                                <iframe src="https://www.youtube.com/embed/m5_AKjDdqaU"></iframe>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade " id="4" role="tabpanel" aria-labelledby="4-tab">
+                            <div class="section location">
+                                <h3 class="heading">Car Location</h3>
+                                <div class="map">
+                                    <div id="contactMap" class="contact-map"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade " id="5" role="tabpanel" aria-labelledby="5-tab">
+                            <div class="section location">
+                                <h3 class="heading">Contact Us</h3>
+                                <div class="contact-1">
+                                    <form action="#" method="GET" enctype="multipart/form-data">
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="form-group name">
+                                                    <input type="text" name="name" class="form-control" placeholder="Name">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="form-group email">
+                                                    <input type="email" name="email" class="form-control" placeholder="Email">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="form-group subject">
+                                                    <input type="text" name="subject" class="form-control" placeholder="Subject">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="form-group number">
+                                                    <input type="text" name="phone" class="form-control" placeholder="Number">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="form-group message">
+                                                    <textarea class="form-control" name="message" placeholder="Write message"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="send-btn">
+                                                    <button type="submit" class="btn btn-color btn-md btn-message">Send Message</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Features opions start -->
+                <div class="features-opions mb-60">
+                    <h3 class="heading">Features</h3>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6">
+                            <ul>
+                                <li>
+                                    <i class="flaticon-vehicle"></i>
+                                    Top Speed: 260
+                                </li>
+                                <li>
+                                    <i class="flaticon-petrol"></i>
+                                    Fuel Type:  @Model.Car.FuelType.Name
+                                </li>
+                                <li>
+                                    <i class="flaticon-road"></i>
+                                    Mileage: @Model.Car.March KM
+                                </li>
+                                <li>
+                                    <i class="flaticon-car"></i>
+                                    Engine: @Model.Car.Engine
+                                </li>
+                                <li>
+                                    <i class="flaticon-car-1"></i>
+                                    Gear: @Model.Car.Transmission
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <ul>
+                                <li>
+                                    <i class="flaticon-transport-4"></i>
+                                    Body Style: @Model.Car.BodyStyle.Name
+                                </li>
+                                <li>
+                                    <i class="flaticon-time"></i>
+                                    Year:@Model.Car.GraduationYear
+                                </li>
+                                <li>
+                                    <i class="flaticon-paint"></i>
+                                    Color: @Model.Car.Color.Name
+                                </li>
+                                <li>
+                                    <i class="flaticon-transport-2"></i>
+                                    Horse Power: @Model.Car.HorsePower
+                                </li>
+                                <li>
+                                    <i class="flaticon-repair"></i>
+                                    Doors: 4
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <ul>
+                                <li>
+                                    <i class="flaticon-location"></i>
+                                    Location: @Model.Car.Location
+                                </li>
+                                <li>
+                                    <i class="flaticon-car-2"></i>
+                                    Free Services
+                                </li>
+                                <li>
+                                    <i class="flaticon-transport-3"></i>
+                                    Oll Changes
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <div class="sidebar mbl">
+                    <!-- Specifications start -->
+                    <div class="specifications widget d-none d-xl-block d-lg-block">
+                        <h5 class="sidebar-title">Specifications</h5>
+                        <ul>
+                            <li>
+                                <span>Make</span>@Model.Car.Brand
+                            </li>
+                            <li>
+                                <span>Model</span>@Model.Car.Model
+                            </li>
+                            <li>
+                                <span>Body Style</span>
+                                @Model.Car.BodyStyle.Name
+                            </li>
+                            <li>
+                                <span>Year</span>@Model.Car.GraduationYear
+                            </li>
+                            <li>
+                                <span>Mileage</span>@Model.Car.March
+                            </li>
+                            <li>
+                                <span>Transmission</span>@Model.Car.Transmission
+                            </li>
+                            <li>
+                                <span> Color</span>  @Model.Car.Color.Name
+                            </li>
+                            <li>
+                                <span>Engine</span>@Model.Car.Engine
+                            </li>
+                            <li>
+                                <span>Fuel Type</span>
+                                @Model.Car.FuelType.Name
+                                Fuel
+                            </li>
+                            <li>
+                                <span>Location</span>@Model.Car.Location
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Agent list start -->
+                    <div class="social-list widget clearfix">
+                        <h5 class="sidebar-title">@Model.Agent.Name @Model.Agent.Surname </h5>
+                        <ul>
+                            <li>Mail: @Model.Agent.Email</li> <br/>
+                            <li>Location: @Model.Agent.Address</li>
+                        </ul>
+                    </div>
+                    <!-- Helping center start -->
+                    <div class="helping-center widget clearfix">
+                        <div class="media">
+                            <i class="fa fa-mobile"></i>
+                            <div class="media-body  align-self-center">
+                                <h5 class="mt-0">Agent Contact</h5>
+                                <h4><a href="tel:@Model.Agent.Mobile">@Model.Agent.Mobile</a></h4>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="related-cars">
+        <div class="container">
+            <h3 class="heading">Related Cars</h3>
+            <div class="slick-slider-area">
+                <div class="row slick-carousel" data-slick='{"slidesToShow": 3, "responsive":[{"breakpoint": 1024,"settings":{"slidesToShow": 2}}, {"breakpoint": 768,"settings":{"slidesToShow": 1}}]}'>
+                    @foreach (var car in Model.Cars)
+                    {
+                        <div class="slick-slide-item">
+
+                            <div class="car-box">
+                                <div class="car-thumbnail">
+                                    <a href="car-details.html" class="car-img">
+                                        <div class="listing-time opening">@((car.IsRent == true) ? "Rent" : "Not Available")</div>
+                                        <img src="~/assets/img/@car.CarImages[0].Image" alt="@car.Brand PHOTO" class="img-fluid">
+                                    </a>
+                                    <div class="car-overlay">
+                                        <a asp-controller="home" asp-action="details" asp-route-id="@car.Id" class="overlay-link">
+                                            <i class="fa fa-link"></i>
+                                        </a>
+                                        <div class="car-magnify-gallery">
+                                            <a href="~/assets/img/@car.CarImages[0].Image" class="overlay-link">
+                                                <i class="fa fa-expand"></i>
+                                            </a>
+                                            @foreach (var item in Model.Car.CarImages.Where(ci => ci.IsPrimary == false)){
+                                            <a href="~/assets/img/@item.Image" class="hidden"></a>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="detail">
+                                    <div class="heading clearfix">
+                                        <div class="title pull-left">
+                                            <a href="car-details.html">@car.Brand /@car.Model /@car.GraduationYear</a>
+                                        </div>
+                                        <div class="price pull-right">
+                                            $@car.Price
+                                        </div>
+                                    </div>
+                                   
+                                    <ul class="facilities-list clearfix">
+                                        <li class="bordered-right">
+                                            <i class="flaticon-transport-4"></i> @car.BodyStyle.Name
+                                        </li>
+                                        <li class="bordered-right">
+                                            <i class="flaticon-road"></i> @car.March
+                                        </li>
+                                        <li>
+                                            <i class="flaticon-petrol"></i> @car.FuelType.Name
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+                <div class="slick-prev slick-arrow-buton">
+                    <i class="fa fa-angle-left"></i>
+                </div>
+                <div class="slick-next slick-arrow-buton">
+                    <i class="fa fa-angle-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Car details page end -->

@@ -1,0 +1,64 @@
+﻿<div class="sub-banner overview-bgi">
+    <div class="container">
+        <div class="page-name">
+            <h1>Agent  Detail</h1>
+        </div>
+    </div>
+    <div class="page-info">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="breadcrumb-area">
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="contact-info">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@model DetailsVM
+<div class="car-details-page content-area-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12 col-xs-12 slider">
+                <div id="carDetailsSlider" class="carousel car-details-sliders slide mb-60">
+                    <!-- main slider carousel items -->
+                    <div class="carousel-inner">
+                        <div class="active item carousel-item" data-slide-number="0">
+                            <img src="~/assets/img/@Model.Agent.Image" class="img-fluid" alt="car-Slider">
+                        </div>
+                    </div>
+                    <!-- main slider carousel nav controls -->
+                    <div class="heading-car">
+                        <div class="row">
+                         
+                                <div class="col-md-12">
+                                    <div class="pull-left">
+                                        <h3>@Model.Agent.Name  @Model.Agent.Surname</h3>
+                                        <p><i class="fa fa-map-marker"></i> @Model.Agent.Address</p>
+                                    </div>
+                                    <div class="pull-right">
+                                        <h3><span class="text-right">$@Model.Agent.Name</span></h3>
+                                        <h5>Seller</h5>
+                                    </div>
+                                </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <!-- Car meta start -->
+               
+                
+                <!-- Specifications start -->
+               
+                <!-- Tabbing box start -->
+         
+                <!-- Features opions start -->
+               
+            </div>
+        </div>
+    </div>
+</div>
